@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxer's Kitchen - 食事ガイド</title>
+    <style>
+        /* Reset or Basic Normalize */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif; /* Example readable font */
+            line-height: 1.6;
+            color: #333; /* Default text color */
+            background-color: #f4f4f4; /* Light grey background */
+            scroll-behavior: smooth; /* Smooth scrolling for nav links */
+        }
+
+        /* Optional: If using Google Fonts */
+        /*
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+        }
+        */
+
+        /* Accent Color Variable (Easy to change) */
+        :root {
+            --accent-color: #1a2b3c; /* Dark Navy */
+            /* --accent-color: #8b0000; Red */
+            /* --accent-color: #5a4; Olive Green */
+        }
+
+        header {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 0; /* Remove margin before nav */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            /* Optional: letter-spacing: 2px; */
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            background-color: #ffffff; /* White background for nav */
+            padding: 0.8rem 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Stay on top when scrolling */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto; /* Center the list */
+            max-width: 1000px; /* Max width for nav items */
+            display: flex; /* Arrange items horizontally */
+            justify-content: center; /* Center nav items */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        nav li {
+            margin: 0 15px; /* Space between nav items */
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: bold;
+            padding: 0.5rem 0; /* Padding for clickable area */
+            display: block;
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        nav a:hover {
+            color: #555; /* Darken color on hover */
+        }
+
+        .section {
+            background-color: #ffffff; /* White background for sections */
+            padding: 3rem 1rem;
+            margin-bottom: 1.5rem; /* Space between sections */
+            border-bottom: 1px solid #eee; /* Subtle separator */
+        }
+
+        /* Remove bottom border for the last section */
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            /* Optional: border-bottom: 2px solid var(--accent-color); */
+            /* Optional: display: inline-block; */
+            /* Optional: padding-bottom: 10px; */
+        }
+
+        .section .content {
+             max-width: 800px; /* Max width for content within section */
+             margin: 0 auto; /* Center content */
+        }
+
+        .content .purpose,
+        .content .note {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #eef; /* Light blue background for purpose/note */
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .content .points,
+        .content .examples {
+            margin-bottom: 2rem;
+        }
+
+        .content h3 {
+            color: var(--accent-color); /* Accent color for subheadings */
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #ccc; /* Dashed line under subheadings */
+            padding-bottom: 5px;
+        }
+
+        .content ul {
+            list-style: disc; /* Standard bullet points */
+            margin-left: 1.5rem;
+        }
+
+        .content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse; /* Remove space between borders */
+            margin-top: 1rem;
+        }
+
+        .content th,
+        .content td {
+            border: 1px solid #ddd; /* Light grey border for table cells */
+            padding: 12px;
+            text-align: left;
+        }
+
+        .content th {
+            background-color: #f2f2f2; /* Light grey background for table header */
+            font-weight: bold;
+        }
+
+        .content tbody tr:nth-child(even) {
+            background-color: #f9f9f9; /* Zebra striping for table rows */
+        }
+
+        footer {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 0; /* Remove margin after the last section */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column; /* Stack nav items vertically */
+                align-items: center; /* Center items */
+            }
+
+            nav li {
+                margin: 5px 0; /* Adjust vertical margin */
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .content .purpose,
+            .content .note {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+
+             .content th,
+             .content td {
+                padding: 8px; /* Reduce table cell padding */
+                font-size: 0.9rem;
+             }
+        }
+
+        @media (max-width: 480px) {
+             header {
+                padding: 2rem 1rem;
+             }
+
+             header h1 {
+                font-size: 1.8rem;
+             }
+
+             header p {
+                 font-size: 1rem;
+             }
+
+             nav {
+                 padding: 0.5rem 1rem;
+             }
+
+             nav a {
+                font-size: 0.9rem;
+             }
+
+             .section {
+                padding: 1.5rem 0.8rem;
+                margin-bottom: 1rem;
+             }
+
+             .section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+             }
+
+             .content .points,
+             .content .examples {
+                 margin-bottom: 1.5rem;
+             }
+
+             .content h3 {
+                 font-size: 1.1rem;
+             }
+
+             .content ul {
+                 margin-left: 1rem;
+             }
+
+             .content li {
+                 margin-bottom: 0.5rem;
+                 font-size: 0.95rem;
+             }
+
+             .content th,
+             .content td {
+                 padding: 6px;
+                 font-size: 0.85rem;
+             }
+
+             footer {
+                padding: 1rem 0.8rem;
+             }
+
+             footer p {
+                 font-size: 0.8rem;
+             }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Boxer's Kitchen</h1>
+        <p>強く、速く、健康的な体を作るための食事ガイド</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#weight-cutting">減量期の食事</a></li>
+            <li><a href="#post-fight">試合後のご褒美飯</a></li>
+            <li><a href="#supplements">プロテイン・サプリメント</a></li>
+            <li><a href="#family-meals">手作りごはん・家族の食事</a></li>
+        </ul>
+    </nav>
+
+    <section id="weight-cutting" class="section">
+        <h2>減量期の食事</h2>
+        <div class="content">
+            <p class="purpose"><strong>目的:</strong> 体重を管理し、試合に向けたコンディションを最適化する。無駄な脂肪を削ぎ落としつつ、筋肉量を維持することを目指します。</p>
+            <div class="points">
+                <h3>食事のポイント</h3>
+                <ul>
+                    <li>高タンパク質、低 carbohydrate (複合糖質を少量) を基本とする。</li>
+                    <li>水分摂取量を調整する（専門家の指導のもと行うこと）。</li>
+                    <li>食物繊維を豊富に含む野菜を積極的に摂る。</li>
+                    <li>健康的な脂質（アボカド、ナッツ類少量）を少量取り入れる。</li>
+                </ul>
+            </div>
+            <div class="examples">
+                <h3>具体的な食事例</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>タイミング</th>
+                            <th>食事例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>朝食</td>
+                            <td>鶏むね肉とブロッコリーのソテー、卵白オムレツ</td>
+                        </tr>
+                        <tr>
+                            <td>昼食</td>
+                            <td>魚のグリルと leafy greens のサラダ</td>
+                        </tr>
+                        <tr>
+                            <td>夕食</td>
+                            <td>赤身肉のステーキ、きのこのソテー</td>
+                        </tr>
+                         <tr>
+                            <td>間食</td>
+                            <td>鶏ささみ、ゆで卵</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+             <p class="note"><strong>補足:</strong> 急激な減量は体を壊す原因となります。計画的に、専門家（栄養士やトレーナー）と相談しながら行いましょう。</p>
+        </div>
+    </section>
+
+    <section id="post-fight" class="section">
+        <h2>試合後のご褒美飯</h2>
+        <div class="content">
+             <p class="purpose"><strong>目的:</strong> 激しい試合で消費したエネルギーを補給し、疲労した体を迅速に回復させる。精神的なリフレッシュも兼ねます。</p>
+            <div class="points">
+                <h3>食事のポイント</h3>
+                <ul>
+                    <li>carbohydrate とタンパク質をバランス良く摂取する。</li>
+                    <li>失われた glycogen を迅速に回復させる。</li>
+                    <li>抗酸化作用のある食品を取り入れ、炎症を抑える。</li>
+                    <li>適度な「ご褒美」でメンタルを満たす。</li>
+                </ul>
+            </div>
+            <div class="examples">
+                 <h3>具体的な食事例</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>タイミング</th>
+                            <th>食事例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>回復期前半<br>(試合直後〜数時間)</td>
+                            <td>消化の良い carbohydrate とタンパク質<br>（例: おにぎり、カステラ、プロテイン入りのスムージー）</td>
+                        </tr>
+                        <tr>
+                            <td>回復期後半</td>
+                            <td>バランスの取れた食事<br>（例: 鶏肉と野菜のカレーライス、サーモンのムニエルとパスタ）</td>
+                        </tr>
+                         <tr>
+                            <td>ご褒美</td>
+                            <td>好きなものを適量楽しむ（ただし、極端な暴飲暴食は避ける）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="note"><strong>補足:</strong> 体の回復が最優先です。好きなものを楽しむのは良いですが、栄養バランスも考慮しましょう。水分補給も忘れずに。</p>
+        </div>
+    </section>
+
+    <section id="supplements" class="section">
+        <h2>プロテイン・サプリメント紹介</h2>
+        <div class="content">
+             <p class="purpose"><strong>目的:</strong> 日々のトレーニングや試合に向けた体づくりをサポートする。食事だけでは不足しがちな栄養素を補う。</p>
+            <div class="points">
+                <h3>主な種類と役割</h3>
+                 <ul>
+                    <li><strong>ホエイプロテイン:</strong> 吸収が早く、トレーニング後のタンパク質補給に最適。筋肉の修復・成長を促進。</li>
+                    <li><strong>カゼインプロテイン:</strong> 吸収がゆっくりで、就寝前や間食に適している。長時間のアミノ酸供給に役立つ。</li>
+                    <li><strong>BCAA:</strong> 筋肉の分解抑制や疲労軽減に効果が期待できる。</li>
+                    <li><strong>クレアチン:</strong> 瞬発的なパワー向上や筋力アップに貢献する可能性。</li>
+                </ul>
+            </div>
+            <div class="examples">
+                <h3>摂取のタイミング</h3>
+                 <ul>
+                    <li><strong>プロテイン:</strong> トレーニング後30分以内、就寝前、食事と食事の間。</li>
+                    <li><strong>BCAA:</strong> トレーニング前、中、後。</li>
+                    <li><strong>クレアチン:</strong> トレーニング前や後など、タイミングによる大きな差はないとされるが、継続的な摂取が重要。</li>
+                </ul>
+            </div>
+             <div class="points">
+                 <h3>選び方のポイント</h3>
+                <ul>
+                    <li>目的に合った種類のプロテイン・サプリメントを選ぶ。</li>
+                    <li>信頼できるメーカーの製品を選ぶ。</li>
+                    <li>必要に応じて専門家（医師や栄養士）に相談する。</li>
+                </ul>
+            </div>
+             <p class="note"><strong>補足:</strong> プロテインやサプリメントはあくまで食事を「補助」するものです。基本はバランスの取れた食事から栄養を摂取することを心がけましょう。</p>
+        </div>
+    </section>
+
+    <section id="family-meals" class="section">
+        <h2>手作りごはん・家族の食事</h2>
+        <div class="content">
+             <p class="purpose"><strong>目的:</strong> ボクサー自身の栄養管理をしながら、家族と一緒に食卓を囲み、心身ともに満たされる時間を持つ。</p>
+             <div class="points">
+                <h3>工夫のポイント</h3>
+                 <ul>
+                    <li>基本的な調理法（焼く、蒸す、煮る）を中心に、味付けを調整する（薄味を心がけ、各自で調整できるようにする）。</li>
+                    <li>家族向けのメニューから、自身に必要な食材（タンパク質源など）を多めに取る。</li>
+                    <li> carbohydrate の量を調整する（自身は大盛りを避け、家族は通常通りなど）。</li>
+                    <li>具沢山の汁物や鍋物で、多くの食材から栄養を摂取する。</li>
+                    <li>同じ食材でも、調理法や味付けを変えることで変化をつける。</li>
+                </ul>
+            </div>
+            <div class="examples">
+                <h3>具体的な献立例</h3>
+                 <ul>
+                    <li><strong>例1:</strong> 鶏むね肉のグリル（自身の分は皮なし）、具沢山野菜スープ、サラダ、ごはん（自身の分は少量）、家族はごはんや他の副菜をプラス。</li>
+                    <li><strong>例2:</strong> 魚の煮付け、ほうれん草のおひたし、豆腐とわかめの味噌汁、玄米（自身の分）、家族は白米など。</li>
+                    <li><strong>例3:</strong> 豚しゃぶサラダ（自身は赤身中心）、きのこのソテー、ごはん（自身の分は少なめ）。</li>
+                </ul>
+            </div>
+             <p class="note"><strong>補足:</strong> 家族との食事は、栄養摂取だけでなく、精神的な安定にも繋がります。コミュニケーションを大切に、一緒に食卓を囲む時間を楽しみましょう。自身の特別な減量期などを家族に理解してもらい、協力してもらうことも重要です。</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Boxer's Kitchen Guide</p>
+    </footer>
+</body>
+</html>
